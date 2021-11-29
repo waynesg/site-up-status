@@ -2,7 +2,7 @@
 window.Config = {
 
   // 站点名
-  SiteName: '站点状态监控---极客青年',
+  SiteName: '站点状态监控',
 
   // 站点链接
   SiteUrl: '/',
