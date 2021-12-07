@@ -627,7 +627,7 @@
                 name: "Home",
                 component: y,
                 meta: {
-                    title: "StatusLive"
+                    title: "Site-Up"
                 }
             }],
             S = new g["a"]({
