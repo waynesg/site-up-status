@@ -561,7 +561,7 @@
                                 range: n[o],
                                 info: this.time_now - 86400 * o < t.monitors[s].create_datetime ? 1 : 0
                             });
-                            1 == t.monitors[s].type ? this.website_table.push(t.monitors[s]) : 3 == t.monitors[s].type && this.datacenter_table.push(t.monitors[s]);
+                            1 == t.monitors[s].type ? this.website_table.push(t.monitors[s]) || 4 == t.monitors[s].type ? this.website_table.push(t.monitors[s]) : 3 == t.monitors[s].type && this.datacenter_table.push(t.monitors[s]);
                             for (var a = [], i = 0; i < t.monitors[s].logs.length; i++) a = {
                                 name: t.monitors[s].friendly_name,
                                 datetime: String(t.monitors[s].logs[i].datetime),
