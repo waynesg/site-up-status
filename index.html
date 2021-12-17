@@ -6,7 +6,6 @@
     <link rel="icon" href="/favicon.ico">
     <link href="/css/app.77fd361b.css" rel="preload" as="style">
     <link href="/css/chunk-vendors.62fd764a.css" rel="preload" as="style">
-    <link href="/js/toogle.js" rel="preload" as="script">
     <link href="/js/app.ff968104.js" rel="preload" as="script">
     <link href="/js/chunk-vendors.73ce823f.js" rel="preload" as="script">
     <link href="/css/chunk-vendors.62fd764a.css" rel="stylesheet">
@@ -14,8 +13,7 @@
   </head>
   <body>
     <div class="kaiguan" >
-        <div class="bai" id="anniu"></div><script src="/js/toogle.js">
-      </script>
+        <div class="bai" id="anniu"></div>
     </div>
     <noscript>
       <strong>We're sorry but statuslive_vue doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
@@ -25,5 +23,26 @@
     </script>
     <script src="/js/app.ff968104.js">
     </script>
+    <script>
+        var anniu =document.getElementById('anniu');
+        var kaiguan = document.querySelector('.kaiguan');
+        var body = document.getElementById('body');
+        var temp = 1;
+        anniu.addEventListener('click',function(){
+            if(temp==1){
+                this.className = 'hei';
+                temp=0;
+                kaiguan.style. border= '2px solid  rgb(11, 243, 81)';
+                body.style. backgroundColor= 'rgb(7, 7, 29)';
+                body.style.color = 'white';
+            }else{
+                this.className = 'bai';
+                temp=1;
+                kaiguan.style. border= '2px solid black';
+                body.style. backgroundColor= 'white';
+                body.style.color = 'black';
+            }
+       })
+     </script>
   </body>
 </html>
