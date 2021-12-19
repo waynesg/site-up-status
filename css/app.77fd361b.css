@@ -6,182 +6,108 @@
   color: #2c3e50
 }
 
+* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--dur: 0.3s;
+	font-size: calc(40px + (80 - 40)*(100vw - 320px)/(2560 - 320));
+}
+body, input {
+	color: hsl(0,0%,10%);
+	font: 1em/1.5 sans-serif;
+}
+form, .toggle:before, .toggle:after {
+	background: hsl(0,0%,90%);
+}
+form, .toggle {
+	position: relative;
+}
+form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.curtain, .sr, .toggle:before, .toggle:after {
+	position: absolute;
+}
+.curtain, .toggle:before, .toggle:after {
+	transition: transform var(--dur);
+}
+.curtain, .toggle:before, .toggle:checked:after  {
+	transition-timing-function: ease-out;
+}
+.curtain, .sr {
+	top: 0;
+	left: 0;
+}
+.curtain {
+	background: hsl(0,0%,100%);
+	mix-blend-mode: difference;
+	pointer-events: none;
+	width: 100%;
+	height: 100%;
+	transform: scaleX(0);
+	transform-origin: 0 50%;
+}
+.sr, .toggle {
+	overflow: hidden;
+}
+.sr {
+	clip: rect(1px,1px,1px,1px);
+	color: transparent;
+	width: 1px;
+	height: 1px;
+}
+.toggle {
+	background: currentColor;
+	border-radius: 0.75em;
+	cursor: pointer;
+	width: 3em;
+	height: 1.5em;
+	-webkit-appearance: none;
+	appearance: none;
+	-webkit-tap-highlight-color: transparent;
+}
+.toggle:before, .toggle:after {
+	border-radius: 50%;
+	content: "";
+	display: block;
+	top: 0.25em;
+	left: 0.25em;
+	width: 1em;
+	height: 1em;
+}
+.toggle:before, .toggle:checked:after {
+	transition-delay: 0s;
+}
+.toggle:checked:before, .toggle:after {
+	transition-delay: calc(var(--dur) * 0.75);
+	transition-timing-function: cubic-bezier(0.3,1.6,0.5,0.7);
+}
+.toggle:before {
+	transform: translateX(-1.5em);
+}
+.toggle:checked:before {
+	transform: translateX(1.5em);
+}
+.toggle:checked:after {
+	transform: translateX(3em);
+}
+.toggle:checked ~ .curtain {
+	transform: scaleX(1);
+}
+.toggle:focus {
+	outline: transparent;
+}
+
 #body {
 #  background: #eee
 #}
-
-// Imports & Mixins
-@import url('https://fonts.googleapis.com/css?family=Share');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-//@import url('https://rsms.me/inter/inter-ui.css');
-
-
-// breakpoints
-@mixin for-size($viewport-size) {
-  @if $viewport-size == phone-only {
-    @media (max-width: 599px) { @content; }
-  } 
-  @else if $viewport-size == tablet-portrait-up {
-    @media (min-width: 600px) { @content; }
-  } 
-  @else if $viewport-size == tablet-landscape-up {
-    @media (min-width: 900px) { @content; }
-  } 
-  @else if $viewport-size == desktop-up {
-    @media (min-width: 1200px) { @content; }
-  } 
-  @else if $viewport-size == big-desktop-up {
-    @media (min-width: 1800px) { @content; }
-  }
-}
-
-// SASS Variables
-$dark: #111115;
-$light: #EEE;
-$toggle-height: 20px;
-$toggle-width: $toggle-height * 2.33;
-$border-width: 2px;
-$header-font: "Share", sans-serif;
-$body-font: "Open Sans", sans-serif;
-
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-html, body {
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  background-color: $light;
-  font-family: $body-font;
-  font-size: 16px;
-  overflow: auto;
-}
-
-main {
-  position: absolute;
-  @include for-size(phone-only) { // vw<=599px
-    left: 10%;
-    width: 80%;
-  }
-  @include for-size(tablet-portrait-up) { // 600<=vw<=899
-    left: 14%;
-    width: 72%;
-  }
-  @include for-size(tablet-landscape-up) { // 900<=vw<=1199
-    left: 17%;
-    width: 66%;
-  }
-  @include for-size(desktop-up) { // 1200<=vw<=1799
-    left: 20%;
-    width: 60%;
-  }
-  @include for-size(big-desktop-up) { // vw>=1800 (yuge!)
-    left: 24%;
-    width: 52%;
-  }
-}
-
-hr {
-  background-color: #999;
-  border: 0;
-  height: 1px;
-}
-
-h3 {
-  color: $dark;
-  font-family: $header-font;
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  margin-bottom: 0;
-  &:not(:first-of-type) {
-    margin-top: 2em;
-  }
-}
-
-p {
-  color: lighten($dark, 20%);
-  hyphens: auto;
-  letter-spacing: 0.02em;
-  line-height: 1.5em;
-  margin-bottom: 1em;
-  position: relative;
-  left: 1em;
-  text-align: justify;
-  width: 95%;
-  &:first-letter {
-    font-size: 24px;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-}
-
-.bg {
-  color: $dark;
-  background-color: $light;
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transition: 0.25s all linear;
-  z-index: -42;
-}
-
-.toggle {
-  background: transparent;
-  background-color: transparent;
-  border-radius: $toggle-height;
-  cursor: pointer;
-  visibility: hidden;
-  height: $toggle-height;
-  width: $toggle-width;
-  position: fixed;
-  top: $toggle-height;
-  right: $toggle-height;
-  z-index: 2;
-  &::before, &::after { // track, slider
-    content: "";
-    display: block;
-    transition: 0.1s all ease-in-out;
-    visibility: visible;
-  }
-  &::before { // track
-    background: transparent;
-    border: $border-width solid $dark;
-    border-radius: $toggle-height;
-    height: inherit;
-    width: inherit;
-  }
-  &::after { // slider
-    background: $dark;
-    border-radius: $toggle-height - ($border-width * 4);
-    height: $toggle-height - ($border-width * 4);
-    width: $toggle-height;
-    position: absolute;
-    top: $border-width * 2;
-    left: $border-width * 2;
-  }
-  &:checked { // toggle state: checked
-    ~ main h3, ~ main p {
-      color: $light;
-    }
-    &::before { //track
-      background: $dark;
-      border: $border-width solid $light;
-    }
-    &::after { // slider
-      background: $light;
-      left: $toggle-width - $toggle-height - $border-width * 2;
-    }
-    ~ .bg {
-      background: $dark;
-    }
-  }
-}
 
 .container-max {
   width: 95%;
