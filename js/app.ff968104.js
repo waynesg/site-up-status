@@ -471,7 +471,7 @@
                             color: t.type_to_color(e.type)
                         }
                     }, [t._v(" " + t._s(e.name) + " " + t._s(t.type_to_text(e.type)) + " - 具体信息：" + t._s(e.reason.code) + " - " + t._s(e.reason.detail)), 1 == e.type ? s("span", [t._v(" - 持续 " + t._s(t.duration_to_text(e.duration)))]) : t._e()])
-                })), 1)], 1)], 1), s("el-footer", [s("el-button", [t._v("默认按钮")])], 1)], 1)
+                })), 1)], 1)], 1)
             },
             p = [],
             h = (s("ac1f"), s("1276"), s("a9e3"), s("4e82"), s("99af"), {
@@ -627,7 +627,7 @@
                 name: "Home",
                 component: y,
                 meta: {
-                    title: "网站状态监控"
+                    title: "网站监控"
                 }
             }],
             S = new g["a"]({
