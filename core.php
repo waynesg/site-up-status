@@ -46,7 +46,7 @@ if(@$o['stat']=='ok'){
     $json['time'] = time();
     $json['json'] = json_encode($o);
     
-    file_put_contents($file_name, json_encode($json));
+   # file_put_contents($file_name, json_encode($json));
     
     exit($json['json']);
 }else{
