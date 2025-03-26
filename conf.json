@@ -11,6 +11,5 @@
     "config_success_min": 98,
     "config_warning_min": 90,
     "config_auto_refresh_seconds": 60,
-
     "logs_each_page": 10
 }
